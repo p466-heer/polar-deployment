@@ -1,0 +1,22 @@
+services:
+  catalog-service:
+    image: "catalog-service"
+    container_name: "catalog-service"
+    depends_on:
+      - polar-postgres
+    ports:
+      - 9001:9001
+    environment:
+      - BPL_JVM_THREAD_COUNT=50
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://polar-postgres:5432/polardb_catalog
+      - POLAR_TESTDATA_ENABLED=true
+
+  polar-postgres:
+    image: "postgres:17"
+    container_name: "polar-postgres"
+    ports:
+      - 5434:5432
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=polardb_catalog
