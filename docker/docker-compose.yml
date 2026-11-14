@@ -20,3 +20,9 @@ services:
       - POSTGRES_USER=user
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=polardb_catalog
+
+  polar-redis:
+    image: "redis:7"
+    container_name: "polar-redis"
+    ports:
+      - "6379:6379"
